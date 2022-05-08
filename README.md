@@ -1,7 +1,7 @@
 <!--Banner session-->
 <p>
-  <img src="https://www.rocketseat.com.br/_next/image?url=%2Fassets%2Flogos%2Frocketseat.svg&w=256&q=100" alt="DIO" tittle="Digital Innovation One" width="250" align="left">
-  <img src="https://i.postimg.cc/QMR4n5xK/svg.png" alt="DIO" tittle="Digital Innovation One" width="250" align="right">
+  <img src="https://i.postimg.cc/gkShTXDv/rocketseat.png' alt="DIO" tittle="Digital Innovation One" width="210" align="left">
+  <img src="https://i.postimg.cc/QMR4n5xK/svg.png" alt="DIO" tittle="Digital Innovation One" width="210" align="right">
 </p>
 <br><br><br>
 

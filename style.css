@@ -9,11 +9,15 @@
   /* (10*100)/16 = 62.5% */
   font-size: 62.5%; /* 1rem = 10px */
 
-  --primary-color-green: hsl(170, 100%, 26%);
-  --primary-color-green-light: hsl(148, 23%, 89%);
-  --primary-color-green-light02: hsl(180, 14%, 97%);
-  --primary-color-green-bege: hsl(39, 100%, 97%);
-  --primary-color-green-hover: hsl(170, 100%, 14%);
+  --hue: 290;
+  --primary-color: hsl(var(--hue), 100%, 26%);
+  /*  --primary-color-light: hsl(148, 23%, 89%); 
+      era 148 fica 170-148=22. O 170 é o valor origianl do hue
+  */
+  --primary-color-light: hsl(calc(var(--hue) - 22), 23%, 89%);
+  --primary-color-light02: hsl(180, 14%, 97%);
+  --primary-color-bege: hsl(39, 100%, 97%);
+  --primary-color-hover: hsl(var(--hue), 100%, 14%);
 
   --secundary-color-headline: hsl(210, 11%, 15%);
   --secundary-color-paragraph: hsl(210, 9%, 31%);
@@ -37,7 +41,7 @@ body {
   font-size: 1.6rem;
   text-align: center;
   overflow: overlay;
-  background: var(--primary-color-green-light02);
+  background: var(--primary-color-light02);
 }
 
 .wrapper {
@@ -59,7 +63,7 @@ section {
 }
 
 section header h4 {
-  color: var(--primary-color-green);
+  color: var(--primary-color);
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 150%;
@@ -88,6 +92,66 @@ section .content p {
   line-height: 150%;
 }
 
+.button {
+  background: var(--primary-color);
+  color: var(--secundary-color-white);
+  border: none;
+  border-radius: 4rem;
+
+  width: fit-content;
+  padding: 1.6rem 3.2rem;
+  margin-block: 3.2rem 6rem;
+
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: var(--primary-color-hover);
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+}
+
+/* CUSTOM COLORS---------------------------------------- */
+
+#navigation .logo path[fill*='#00856F'],
+#backToTopButton circle {
+  fill: var(--primary-color);
+}
+
+#navigation.scroll .logo path,
+body.menu-expanded #navigation .logo path {
+  fill: var(--secundary-color-white);
+}
+
+button.open-menu path[stroke*='#00856F'],
+#contact li path {
+  stroke: var(--primary-color);
+}
+
+#navigation.scroll button.open-menu path[stroke*='#00856F'] {
+  stroke: var(--secundary-color-white);
+}
+
+#services .cards circle {
+  fill: var(--primary-color-light);
+}
+
 /* NAVIGATION ------------------------------------------ */
 nav {
   display: flex;
@@ -103,15 +167,7 @@ nav {
 /* nav.scrool SEM espaço pq a tag nav
 tem essa classe scroll */
 nav.scroll {
-  background: var(--primary-color-green);
-}
-
-nav.scroll .logo path {
-  fill: var(--secundary-color-white);
-}
-
-nav.scroll button path {
-  stroke: var(--secundary-color-white);
+  background: var(--primary-color);
 }
 
 nav .wrapper {
@@ -162,7 +218,7 @@ body.menu-expanded .menu {
   position: fixed;
   top: 0;
   left: 0;
-  background: var(--primary-color-green);
+  background: var(--primary-color);
 
   width: 100vw;
   height: 100vh;
@@ -187,7 +243,7 @@ body.menu-expanded .menu {
   text-decoration: none;
 }
 
-.button-menu {
+.menu .button {
   padding: 1.6rem 3.2rem;
   background: var(--secundary-color-white);
   border-radius: 4rem;
@@ -196,17 +252,17 @@ body.menu-expanded .menu {
   line-height: 2.3rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--primary-color-green);
+  color: var(--primary-color);
 
   display: inline-block;
   margin-block: 4.8rem 8rem;
 }
 
-.social-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3.2rem;
+.menu .button:hover {
+  background: var(--primary-color);
+  color: var(--secundary-color-white);
+
+  filter: brightness(1.3);
 }
 
 body.menu-expanded .logo,
@@ -229,7 +285,7 @@ body.menu-expanded .logo path {
   content: '';
   width: 100%;
   height: calc(108rem + var(--nav-height));
-  background: var(--primary-color-green-light);
+  background: var(--primary-color-light);
   display: block;
   position: absolute;
   top: 0%;
@@ -243,25 +299,8 @@ body.menu-expanded .logo path {
   line-height: 150%;
 }
 
-#home button {
-  background: var(--primary-color-green);
-  color: var(--secundary-color-white);
-  border: none;
-  border-radius: 4rem;
-
-  height: 6.2rem;
-  width: 26.3rem;
-  margin: 3.2rem auto 6rem auto;
-
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.8rem;
-  text-transform: uppercase;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.6rem;
+#home .button {
+  margin-inline: auto auto;
 }
 
 #home img {
@@ -272,8 +311,8 @@ body.menu-expanded .logo path {
 }
 
 #home .stats {
-  background: var(--primary-color-green-bege);
-  border: 1px solid var(--primary-color-green-light);
+  background: var(--primary-color-bege);
+  border: 1px solid var(--primary-color-light);
   border-radius: 0.6rem;
 
   width: 32.7rem;
@@ -295,7 +334,7 @@ body.menu-expanded .logo path {
 
 #home .stat p {
   margin: 0;
-  color: var(--primary-color-green);
+  color: var(--primary-color);
   font-size: 1.6rem;
   line-height: 150%;
 }
@@ -315,7 +354,7 @@ body.menu-expanded .logo path {
   padding: 2.4rem;
   text-align: left;
   background: var(--secundary-color-white);
-  border: 1px solid var(--primary-color-green-light);
+  border: 1px solid var(--primary-color-light);
   border-radius: 0.6rem;
 }
 
@@ -326,7 +365,7 @@ body.menu-expanded .logo path {
 /* ABOUT -------------------------------_----------- */
 #about {
   text-align: left;
-  background: var(--primary-color-green-bege);
+  background: var(--primary-color-bege);
 }
 
 #about header h2 {
@@ -337,5 +376,78 @@ body.menu-expanded .logo path {
   margin-block: 2.4rem 6rem;
 }
 
-#about {
+/* CONTACT -------------------------------_----------- */
+#contact {
+  text-align: left;
+}
+
+#contact header {
+  margin-bottom: 3.2rem;
+}
+
+#contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* FOOTER ------------------------------------------ */
+footer {
+  background: var(--primary-color);
+  padding-block: 6rem;
+  text-align: left;
+  color: var(--secundary-color-white);
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 2.4rem;
+}
+
+footer .logo svg {
+  width: 23.6rem;
+  height: 3.1rem;
+}
+
+footer .logo path {
+  fill: var(--secundary-color-white);
+}
+
+footer p {
+  color: var(--primary-color-bege);
+  line-height: 2;
+
+  margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+  justify-content: flex-start;
+}
+
+/* BCAK TO TOP BUTTOM ----------------------------- */
+#backToTopButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 2.5rem;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(100%);
+  transition: 200ms;
+}
+
+#backToTopButton.show {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(0);
 }
